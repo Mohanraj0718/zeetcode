@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Problem Statements with Pagination</title>
+    <style>
+      button {
+        margin: 5px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Problem Statements</h1>
+    <div>
+      <button onclick="renderProblems(1)">Page 1</button>
+      <button onclick="renderProblems(2)">Page 2</button>
+    </div>
+    <div id="problem-statements">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Difficulty</th>
+            <th>Acceptance</th>
+          </tr>
+        </thead>
+        <tbody id="problems-body">
+          <!-- Problem rows will be inserted here -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      const problemsPage1 = [
+        {
+          title: "201. Bitwise AND of Numbers Range",
+          difficulty: "Medium",
+          acceptance: "42%",
+        },
+        {
+          title: "202. Happy Number",
+          difficulty: "Easy",
+          acceptance: "54.9%",
+        },
+        {
+          title: "203. Remove Linked List Elements",
+          difficulty: "Hard",
+          acceptance: "42%",
+        },
+      ];
+
+      const problemsPage2 = [
+        {
+          title: "204. Count Primes",
+          difficulty: "Medium",
+          acceptance: "30.7%",
+        },
+        {
+          title: "205. Isomorphic Strings",
+          difficulty: "Easy",
+          acceptance: "39.5%",
+        },
+        {
+          title: "206. Reverse Linked List",
+          difficulty: "Easy",
+          acceptance: "66.7%",
+        },
+      ];
+
+      function renderProblems(page) {
+        const tbody = document.getElementById("problems-body");
+        tbody.innerHTML = ""; // Clear existing rows
+
+        // Select the appropriate set of problems based on the page
+        const problems = page === 1 ? problemsPage1 : problemsPage2;
+
+        problems.forEach((problem) => {
+          const trTag = document.createElement("tr");
+
+          const tdEl1 = document.createElement("td");
+          tdEl1.innerHTML = problem.title;
+
+          const tdEl2 = document.createElement("td");
+          tdEl2.innerHTML = problem.difficulty;
+
+          const tdEl3 = document.createElement("td");
+          tdEl3.innerHTML = problem.acceptance;
+
+          trTag.appendChild(tdEl1);
+          trTag.appendChild(tdEl2);
+          trTag.appendChild(tdEl3);
+          tbody.appendChild(trTag);
+        });
+      }
+
+      // Render the first page by default
+      renderProblems(1);
+    </script>
+  </body>
+</html>
